@@ -11,7 +11,8 @@ def validate_pattern(form, field):
     if(not form.avail_letters.data and not form.pattern.data):
         raise ValidationError("Pattern must be provided if the letters field is empty.")
 
-    elif(form.word_length.data and form.word_length.data != len(form.pattern.data)):
+    if(form.word_length.data and form.pattern.data and 
+        form.word_length.data != len(form.pattern.data)):
         raise ValidationError("Pattern length must be the same as the word length given.")
 
 class WordForm(FlaskForm):
@@ -54,17 +55,18 @@ def letters_2_words():
 
     word_set = set()
     if letters:
-        for l in range(3,len(letters)+1):
+        if word_len:
+            possible_len = [word_len]
+        else:
+            possible_len = range(3,len(letters)+1)
+        for l in possible_len:
             for word in itertools.permutations(letters,l):
                 w = "".join(word)
-                # Test
-                w = str(re.findall(pattern, w))[2:-2]
-                # End test
+                if pattern:
+                    w = str(re.findall(pattern, w))[2:-2]
+
                 if w in good_words:
-                    if not word_len:
-                        word_set.add(w)
-                    elif len(w) == word_len:
-                        word_set.add(w)
+                    word_set.add(w)
     else:
         word_list = re.findall(("'"+pattern+"'"), repr(good_words))
         word_list = [sub[1:-1] for sub in word_list]
