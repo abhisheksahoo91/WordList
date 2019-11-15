@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
+{% block definition %}
+<div id="word_def_group" class="word_def_group_off">
+	<div id="word_def_close" onclick="closeDefinition()">
+	</div>
+	<div id="word_definition">
+	</div>
+</div>
+{% endblock%}
+
 {% block content %}
 <main>
     {% for word in wordlist: %}

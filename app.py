@@ -23,7 +23,7 @@ class WordForm(FlaskForm):
     pattern = StringField(u'Pattern', [validators.Regexp(r'^[a-z\.]*$', message="must contain either letters or the character dot(.)"), 
         validate_pattern
     ])
-    submit = SubmitField("Go")
+    submit = SubmitField("Get Words")
 
 csrf = CSRFProtect()
 app = Flask(__name__)
@@ -31,10 +31,12 @@ SECRET_KEY = os.urandom(32)
 app.config["SECRET_KEY"] = SECRET_KEY
 csrf.init_app(app)
 
+USER_NAME = "Abhishek Sahoo"
+
 @app.route('/index')
 def index():
     form = WordForm()
-    return render_template("index.html", form=form)
+    return render_template("index.html", form=form, name=USER_NAME)
 
 #def getWordByPattern():
 
@@ -48,7 +50,7 @@ def letters_2_words():
         letters = form.avail_letters.data
         pattern = form.pattern.data
     else:
-        return render_template("index.html", form=form)
+        return render_template("index.html", form=form, name=USER_NAME)
 
     with open('sowpods.txt') as f:
         good_words = set(x.strip().lower() for x in f.readlines())
@@ -74,7 +76,7 @@ def letters_2_words():
 
     return render_template('wordlist.html',
         wordlist = sorted(sorted(word_set), key=len),
-        name="Abhishek")
+        name=USER_NAME)
 
 @app.route('/proxy')
 def proxy():

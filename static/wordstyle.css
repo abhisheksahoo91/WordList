@@ -1,12 +1,94 @@
 main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    background-color: lightslategray;
+    padding-top: 120px;
+    padding-bottom: 50px;
+}
+
+.field_spacing {
+	padding: 5px;
 }
 
 .wordbox {
     text-align: center;
-    border: solid white;
-    margin: 3px;
+    height: 50px;
+    font-size: 18px;
+}
 
+body {
+	text-align: center;
+	font-family: monospace;
+	font-size: 16px;
+}
+
+nav {
+	width: 100%;
+	font-size: 20px;
+	height: 100px;
+	position: fixed;
+	background-color: darkgray;
+}
+
+form {
+	font-family: monospace;
+	font-size: 18px;
+	padding-top: 120px;
+}
+
+div#form_field {
+	display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+div#submit_button {
+    text-align: center;
+    font-family: monospace;
+}
+
+div#word_def_group {
+	background-color: lightgray;
+    position: fixed;
+    top: 105px;
+    bottom: 35px;
+    overflow-y: scroll;
+}
+
+div#word_def_close {
+	border-style: solid;
+	text-align: center;
+	background-color: red;
+	padding: 10px;
+    cursor: pointer;
+}
+
+div#word_definition {
+	text-align: left;
+	padding: 10px;
+}
+
+.word_def_group_on {
+	top: 200px;
+	display: block;
+	width: 100%;
+}
+
+.word_def_group_off {
+	display: none;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	font-size: 18px;
+	text-align: center;
+	background-color: darkgray;
+	height: 30px;
+	width: 100%;
+	z-index: 1;
+	padding: 10px;
+}
+
+.errors {
+	color: red;
+	text-align: left;
 }

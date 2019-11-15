@@ -6,15 +6,21 @@
     <body>
         {% block navbar %}
         <nav>
-            <h1>Word List Program for {{name}}</h1>
+            <p>Word Finder</p>
+            <p>{{ name }}</p>
         </nav>
+        {% endblock %}
+
+        {% block definition %}
         {% endblock %}
 
         {% block content %}
         default content
         {% endblock %}
 
-
+        <footer>
+            Click on <a href="https://github.com/abhisheksahoo91/WordList.git">this link </a> to view the source code maintained in Github
+        </footer>
         <script type="text/javascript" src="/static/script_words.js"></script>
     </body>
 </html>
