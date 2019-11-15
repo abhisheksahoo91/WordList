@@ -25,16 +25,28 @@ async function getSelectedWord(me) {
 					for (let i = 0; i < myJson.length; i++) {
 						var iMyJson = myJson[i];
 						var iList = document.createElement('li');
-						iList.innerHTML = iMyJson.meta.id + " (" + iMyJson.fl + ")";
-						orderedList.appendChild(iList);
+						if (iMyJson.hasOwnProperty('meta')) {
+							iList.innerHTML = iMyJson.meta.id + " (" + iMyJson.fl + ")";
+							orderedList.appendChild(iList);
 
-						var unorderedList = document.createElement('ul');
-						for (let j = 0; j < iMyJson.shortdef.length; j++) {
-							var jList = document.createElement('li');
-							jList.innerHTML = iMyJson.shortdef[j];
-							unorderedList.appendChild(jList);
+							var unorderedList = document.createElement('ul');
+							for (let j = 0; j < iMyJson.shortdef.length; j++) {
+								var jList = document.createElement('li');
+								jList.innerHTML = iMyJson.shortdef[j];
+								unorderedList.appendChild(jList);
+							}
+							orderedList.appendChild(unorderedList);
+						} else {
+							if (i == 0) {
+								var myHeader = document.createElement('h3');
+								myHeader.innerHTML = "No definition found for the word " + myWord 
+								+ ". Below are a few similar words returned by Merriam Webster app.";
+								divDef.appendChild(myHeader);
+							}
+							
+							iList.innerHTML = iMyJson;
+							orderedList.appendChild(iList);
 						}
-						orderedList.appendChild(unorderedList);
 					}
 					
 					divDef.appendChild(orderedList);
