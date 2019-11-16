@@ -22,6 +22,7 @@ async function getSelectedWord(me) {
 
 					divDef.innerHTML = [];
 					var orderedList = document.createElement('ul');
+					
 					for (let i = 0; i < myJson.length; i++) {
 						var iMyJson = myJson[i];
 						var iList = document.createElement('li');
@@ -30,6 +31,7 @@ async function getSelectedWord(me) {
 							orderedList.appendChild(iList);
 
 							var unorderedList = document.createElement('ul');
+							unorderedList.classList.add("list_normal");
 							for (let j = 0; j < iMyJson.shortdef.length; j++) {
 								var jList = document.createElement('li');
 								jList.innerHTML = iMyJson.shortdef[j];
